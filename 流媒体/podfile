@@ -1,0 +1,10 @@
+platform :ios,'7.0'
+target '流媒体' do
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'MJExtension'
+pod 'ReactiveCocoa'
+pod 'MJRefresh'
+pod 'MBProgressHUD'
+pod 'Masonry'
+end

@@ -29,6 +29,7 @@
 		21514FFE1ED6C70100E9EAF8 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21514FFD1ED6C70100E9EAF8 /* libbz2.tbd */; };
 		215150001ED6C71D00E9EAF8 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21514FFF1ED6C71D00E9EAF8 /* IJKMediaFramework.framework */; };
 		215150021ED6C75F00E9EAF8 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215150011ED6C75F00E9EAF8 /* IJKMediaFramework.framework */; };
+		88317B807423FACECF27B978 /* libPods-流媒体.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF005036654C8F92EA00EDD /* libPods-流媒体.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,9 @@
 		21514FFD1ED6C70100E9EAF8 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		21514FFF1ED6C71D00E9EAF8 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = ../IJKMediaFramework.framework; sourceTree = "<group>"; };
 		215150011ED6C75F00E9EAF8 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		305F592180EF9D78BD13AEB2 /* Pods-流媒体.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-流媒体.debug.xcconfig"; path = "Pods/Target Support Files/Pods-流媒体/Pods-流媒体.debug.xcconfig"; sourceTree = "<group>"; };
+		55D1B804DB4B9D12158C9854 /* Pods-流媒体.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-流媒体.release.xcconfig"; path = "Pods/Target Support Files/Pods-流媒体/Pods-流媒体.release.xcconfig"; sourceTree = "<group>"; };
+		7AF005036654C8F92EA00EDD /* libPods-流媒体.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-流媒体.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				21514FEA1ED6C5A200E9EAF8 /* AVFoundation.framework in Frameworks */,
 				21514FE81ED6C59200E9EAF8 /* AudioToolbox.framework in Frameworks */,
 				215150021ED6C75F00E9EAF8 /* IJKMediaFramework.framework in Frameworks */,
+				88317B807423FACECF27B978 /* libPods-流媒体.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +133,7 @@
 				21514FD71ED6C56B00E9EAF8 /* 流媒体UITests */,
 				21514FB11ED6C56B00E9EAF8 /* Products */,
 				21514FE61ED6C59200E9EAF8 /* Frameworks */,
+				CFF8F30585EBB2C2F5C84106 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,8 +206,18 @@
 				21514FEB1ED6C6A700E9EAF8 /* CoreVideo.framework */,
 				21514FE91ED6C5A200E9EAF8 /* AVFoundation.framework */,
 				21514FE71ED6C59200E9EAF8 /* AudioToolbox.framework */,
+				7AF005036654C8F92EA00EDD /* libPods-流媒体.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFF8F30585EBB2C2F5C84106 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				305F592180EF9D78BD13AEB2 /* Pods-流媒体.debug.xcconfig */,
+				55D1B804DB4B9D12158C9854 /* Pods-流媒体.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,9 +227,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21514FDD1ED6C56B00E9EAF8 /* Build configuration list for PBXNativeTarget "流媒体" */;
 			buildPhases = (
+				D59ADDB07669BB56AE3CAC7D /* [CP] Check Pods Manifest.lock */,
 				21514FAC1ED6C56B00E9EAF8 /* Sources */,
 				21514FAD1ED6C56B00E9EAF8 /* Frameworks */,
 				21514FAE1ED6C56B00E9EAF8 /* Resources */,
+				109DE5F290B9AF5A4D06A282 /* [CP] Embed Pods Frameworks */,
+				6869CAD967D44B6C60B7B36A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -334,6 +353,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		109DE5F290B9AF5A4D06A282 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-流媒体/Pods-流媒体-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6869CAD967D44B6C60B7B36A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-流媒体/Pods-流媒体-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D59ADDB07669BB56AE3CAC7D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		21514FAC1ED6C56B00E9EAF8 /* Sources */ = {
@@ -489,6 +556,7 @@
 		};
 		21514FDE1ED6C56B00E9EAF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 305F592180EF9D78BD13AEB2 /* Pods-流媒体.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G45H8BH4LH;
@@ -498,7 +566,10 @@
 				);
 				INFOPLIST_FILE = "流媒体/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.zhiYong.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -506,6 +577,7 @@
 		};
 		21514FDF1ED6C56B00E9EAF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55D1B804DB4B9D12158C9854 /* Pods-流媒体.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G45H8BH4LH;
@@ -515,7 +587,10 @@
 				);
 				INFOPLIST_FILE = "流媒体/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.zhiYong.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -590,6 +665,7 @@
 				21514FDF1ED6C56B00E9EAF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21514FE01ED6C56B00E9EAF8 /* Build configuration list for PBXNativeTarget "流媒体Tests" */ = {
 			isa = XCConfigurationList;
@@ -598,6 +674,7 @@
 				21514FE21ED6C56B00E9EAF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21514FE31ED6C56B00E9EAF8 /* Build configuration list for PBXNativeTarget "流媒体UITests" */ = {
 			isa = XCConfigurationList;
@@ -606,6 +683,7 @@
 				21514FE51ED6C56B00E9EAF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
