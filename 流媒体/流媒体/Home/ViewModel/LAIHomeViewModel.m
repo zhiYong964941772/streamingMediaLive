@@ -13,6 +13,8 @@
     self = [super init];
     if (self) {
         [self bindLiveCommand];
+        [self bindVideoCature];
+
     }
     return self;
 }

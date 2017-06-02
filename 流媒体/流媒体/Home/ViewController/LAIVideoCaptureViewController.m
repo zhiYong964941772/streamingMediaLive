@@ -9,16 +9,46 @@
 #import "LAIVideoCaptureViewController.h"
 #import "LAIVideoCaptureViewModel.h"
 @interface LAIVideoCaptureViewController ()
-
+{
+    LAIVideoCaptureViewModel *_captureViewModel;
+}
 @end
 
 @implementation LAIVideoCaptureViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ _captureViewModel = [LAIVideoCaptureViewModel makeVideoCaptureWithSuperView:self.view WithMakeObj:^(LAIVideoCaptureViewModel *obj) {
+     [obj setImageName:@"focus"];
+     [[obj setupCaputure:@(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)]startDeviceRunning];
+     obj.videoSampleBuffer = ^(CMSampleBufferRef videoSB, id videoSelf) {
+         if ([videoSelf isMemberOfClass:[LAIVideoCaptureViewModel class]]) {
+             [videoSelf getVideoData];
+         }else{
+             NSLog(@"%@",videoSelf);
   
+         }
+     };
+     obj.audioSampleBuffer = ^(CMSampleBufferRef audioSB, id audioSelf) {
+         if ([audioSelf isMemberOfClass:[LAIVideoCaptureViewModel class]]) {
+             [audioSelf getAudioData];
+         }else{
+             NSLog(@"%@",audioSelf);
+         }
+     };
+     
+       }];
+    
 }
-
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_captureViewModel touchFocusCursorWithBegan:touches WithFocus:^(CGPoint focusPoint) {
+        NSLog(@"%@",NSStringFromCGPoint(focusPoint));
+    }];
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [_captureViewModel startDeviceRunning];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

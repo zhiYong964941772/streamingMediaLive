@@ -24,7 +24,7 @@
                 [self pushLiveViewControllerWith:x];
             }
         }];
-        [_viewModel.collectCommand.executionSignals subscribeNext:^(id x) {
+        [_viewModel.collectCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
             if ([x isEqualToString:SUCCESS]) {
                 [self pushVideoCapture];
             }
