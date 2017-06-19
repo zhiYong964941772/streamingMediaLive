@@ -27,6 +27,7 @@
 		21514FFE1ED6C70100E9EAF8 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21514FFD1ED6C70100E9EAF8 /* libbz2.tbd */; };
 		215150001ED6C71D00E9EAF8 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21514FFF1ED6C71D00E9EAF8 /* IJKMediaFramework.framework */; };
 		215150021ED6C75F00E9EAF8 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215150011ED6C75F00E9EAF8 /* IJKMediaFramework.framework */; };
+		215624C61EF7D2EB00BC9F90 /* LAIAudioCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 215624C51EF7D2EA00BC9F90 /* LAIAudioCoding.m */; };
 		21D676A61ED7D97700505A31 /* NSManagedObjectContext+FRP.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D676991ED7D97700505A31 /* NSManagedObjectContext+FRP.m */; };
 		21D676A71ED7D97700505A31 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D6769B1ED7D97700505A31 /* UIBarButtonItem+Extension.m */; };
 		21D676A81ED7D97700505A31 /* UIImage+PixForLai.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D6769D1ED7D97700505A31 /* UIImage+PixForLai.m */; };
@@ -94,6 +95,8 @@
 		21514FFD1ED6C70100E9EAF8 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		21514FFF1ED6C71D00E9EAF8 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = ../IJKMediaFramework.framework; sourceTree = "<group>"; };
 		215150011ED6C75F00E9EAF8 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		215624C41EF7D2EA00BC9F90 /* LAIAudioCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAIAudioCoding.h; sourceTree = "<group>"; };
+		215624C51EF7D2EA00BC9F90 /* LAIAudioCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAIAudioCoding.m; sourceTree = "<group>"; };
 		21D6768A1ED7D55000505A31 /* PrefixHeaderStreaming.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeaderStreaming.pch; sourceTree = "<group>"; };
 		21D676981ED7D97700505A31 /* NSManagedObjectContext+FRP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+FRP.h"; sourceTree = "<group>"; };
 		21D676991ED7D97700505A31 /* NSManagedObjectContext+FRP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+FRP.m"; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 		21514FB21ED6C56B00E9EAF8 /* 流媒体 */ = {
 			isa = PBXGroup;
 			children = (
+				215624C01EF7D2A500BC9F90 /* Tools */,
 				21D676971ED7D8E300505A31 /* Category */,
 				21D6768B1ED7D86200505A31 /* Main */,
 				21D6768F1ED7D86A00505A31 /* Home */,
@@ -268,6 +272,39 @@
 				7AF005036654C8F92EA00EDD /* libPods-流媒体.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		215624C01EF7D2A500BC9F90 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				215624C11EF7D2A500BC9F90 /* Model */,
+				215624C21EF7D2A500BC9F90 /* ViewController */,
+				215624C31EF7D2A500BC9F90 /* ViewModel */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		215624C11EF7D2A500BC9F90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		215624C21EF7D2A500BC9F90 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		215624C31EF7D2A500BC9F90 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				215624C41EF7D2EA00BC9F90 /* LAIAudioCoding.h */,
+				215624C51EF7D2EA00BC9F90 /* LAIAudioCoding.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		21D6768B1ED7D86200505A31 /* Main */ = {
@@ -607,6 +644,7 @@
 				21D676BF1ED8022E00505A31 /* LAILiveModel.m in Sources */,
 				21D676AC1ED7D97700505A31 /* UIView+Extension.m in Sources */,
 				21D676A61ED7D97700505A31 /* NSManagedObjectContext+FRP.m in Sources */,
+				215624C61EF7D2EB00BC9F90 /* LAIAudioCoding.m in Sources */,
 				21D676A91ED7D97700505A31 /* UIImageView+Extension.m in Sources */,
 				21D676A81ED7D97700505A31 /* UIImage+PixForLai.m in Sources */,
 				21D676D41ED8357300505A31 /* LAIVideoCaptureViewModel.m in Sources */,
