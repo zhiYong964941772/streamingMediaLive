@@ -9,5 +9,5 @@
 #import "LAIDataUrl.h"
 
 @implementation LAIDataUrl
-NSString *const LIVEURL = @"http://116.211.167.106/api/live/aggregation?uid=133825214&interest=1";
+NSString *const LIVEURL = @"http://116.211.167.106/api/live/aggregation?uid=133825214&interest=1";//映客流
 @end

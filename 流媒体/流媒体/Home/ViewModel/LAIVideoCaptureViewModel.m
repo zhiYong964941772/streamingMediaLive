@@ -11,7 +11,9 @@
     AVCaptureSession *_captureSession;//创建捕获会话
     AVCaptureDeviceInput *_currentVideoDeviceInput;//捕获输入流
     AVCaptureVideoPreviewLayer *_prevideoPlayer;//视频预览层
-    AVCaptureConnection *_videoConnection;//捕获输出，区分音频和视频
+    AVCaptureConnection *_videoConnection;//捕获输出，区分音频和视
+    AVCaptureAudioDataOutput *_audioDataOut;
+    AVCaptureVideoDataOutput *_videoDataOut;
     UIView *_superView;//寄存视图
     NSData *_videoData;//视频数据已处理
     NSData *_audioData;//音频数据已处理
@@ -64,23 +66,23 @@
         [_captureSession addInput:audioDeviceInput];
     }
     
-    AVCaptureVideoDataOutput *videoOutPut = [[AVCaptureVideoDataOutput alloc]init];//获取视频输出设备
-    [videoOutPut setAlwaysDiscardsLateVideoFrames:YES];//抛弃过期帧
-    [videoOutPut setVideoSettings:@{(__bridge NSString*) kCVPixelBufferPixelFormatTypeKey:videoF}];//设置视频格式，yuv420
+    _videoDataOut = [[AVCaptureVideoDataOutput alloc]init];//获取视频输出设备
+    [_videoDataOut setAlwaysDiscardsLateVideoFrames:YES];//抛弃过期帧
+    [_videoDataOut setVideoSettings:@{(__bridge NSString*) kCVPixelBufferPixelFormatTypeKey:videoF}];//设置视频格式，yuv420
     dispatch_queue_t videoQueue = dispatch_queue_create("VideoCaptreQueue", DISPATCH_QUEUE_SERIAL);//创建串行队列，才能获取视频数据
-    [videoOutPut setSampleBufferDelegate:self queue:videoQueue];
-    if ([_captureSession canAddOutput:videoOutPut]) {
-        [_captureSession addOutput:videoOutPut];
+    [_videoDataOut setSampleBufferDelegate:self queue:videoQueue];
+    if ([_captureSession canAddOutput:_videoDataOut]) {
+        [_captureSession addOutput:_videoDataOut];
     }
     
-    AVCaptureAudioDataOutput *audioOutPut = [[AVCaptureAudioDataOutput alloc]init];
-    dispatch_queue_t audioQueue = dispatch_queue_create("VideoCaptreQueue", DISPATCH_QUEUE_SERIAL);//创建串行队列，才能获取音频数据
-    [audioOutPut setSampleBufferDelegate:self queue:audioQueue];
-    if ([_captureSession canAddOutput:audioOutPut]) {
-        [_captureSession addOutput:audioOutPut];
+    _audioDataOut = [[AVCaptureAudioDataOutput alloc]init];
+    dispatch_queue_t audioQueue = dispatch_queue_create("AudioCaptreQueue", DISPATCH_QUEUE_SERIAL);//创建串行队列，才能获取音频数据
+    [_audioDataOut setSampleBufferDelegate:self queue:audioQueue];
+    if ([_captureSession canAddOutput:_audioDataOut]) {
+        [_captureSession addOutput:_audioDataOut];
     }
     #pragma mark -- //捕获数据
-    _videoConnection = [videoOutPut connectionWithMediaType:AVMediaTypeVideo];
+    _videoConnection = [_videoDataOut connectionWithMediaType:AVMediaTypeVideo];
     
     _prevideoPlayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
     _prevideoPlayer.frame = _superView.bounds;
@@ -251,5 +253,16 @@
 - (id)getVideoData{
     id videoData = [self convertVideoSmapleBufferToYuvData:_videoSB];
     return videoData;
+}
+- (void)dealloc{
+    if ([_captureSession isRunning]) {
+        
+        [_captureSession stopRunning];
+        
+    }
+    
+    [_videoDataOut setSampleBufferDelegate:nil queue:dispatch_get_main_queue()];
+    
+    [_audioDataOut setSampleBufferDelegate:nil queue:dispatch_get_main_queue()];
 }
 @end
