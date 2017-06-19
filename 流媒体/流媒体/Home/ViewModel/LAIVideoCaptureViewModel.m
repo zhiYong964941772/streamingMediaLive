@@ -213,7 +213,7 @@
     size_t pixelH = CVPixelBufferGetHeight(pBuffer);//图像高度（像素）设置支持的录取像素
     size_t y_size = pixelW * pixelH;//yuv中的y所占字节数
     size_t uv_size = y_size*0.5; //yuv中的uv所占的字节数
-    uint8_t *yuv_frame = malloc(y_size * uv_size);//总字节
+    uint8_t *yuv_frame = malloc(y_size + uv_size);//总字节
     uint8_t *y_frame = CVPixelBufferGetBaseAddressOfPlane(pBuffer, 0);//获取y亮度数据指针
     uint8_t *uv_frame = CVPixelBufferGetBaseAddressOfPlane(pBuffer, 1);
     if ((yuv_frame == NULL)||(y_frame == NULL))return VIDEOERROR;

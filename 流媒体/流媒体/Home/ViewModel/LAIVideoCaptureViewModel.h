@@ -104,7 +104,7 @@
 @property (nonatomic, copy)void (^videoSampleBuffer)(CMSampleBufferRef videoSB ,id videoSelf);
 @property (nonatomic, copy)void (^audioSampleBuffer)(CMSampleBufferRef audioSB ,id audioSelf);
 /*
- * 获取数据（已转换的视频数据）,必须在各自对应的SampleBufferBlock里调用
+ * 获取数据（已转换的视频数据）,必须在各自对应的SampleBufferBlock里调用，目前只提供yuv420转码
  */
 - (id)getVideoData;
 - (id)getAudioData;
