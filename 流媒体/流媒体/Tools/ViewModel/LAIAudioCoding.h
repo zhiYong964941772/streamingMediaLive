@@ -8,23 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+typedef NS_ENUM(NSInteger,PCMCodecType){
+    PCMCodecTypeSOFT = 0,//软编码
+    PCMCodecTypeHARD = 1//硬编码
+};
 @interface LAIAudioCoding : NSObject
 
 /**
-硬编码acc数据
+编码acc数据
 
  @param samplebufferRef pcm音频数据
- @return  获取一个硬编码acc数据
+ @param type pcm编码格式
+
+ @return  获取一个编码acc数据
 
  */
-+(id)getCodingAudioBoxWithHard:(CMSampleBufferRef)samplebufferRef;
-
-/**
- 软编码acc数据
-
- @param samplebufferRef pcm音频数据
- @return 获取一个软编码acc数据
- */
-+(id)getCodingAudioBoxWithSoft:(CMSampleBufferRef)samplebufferRef;
++(id)getCodingAudioBoxWithPCM:(CMSampleBufferRef)samplebufferRef OfCodeType:(PCMCodecType)type;
 
 @end
