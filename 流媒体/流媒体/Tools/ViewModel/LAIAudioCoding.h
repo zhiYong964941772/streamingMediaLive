@@ -14,15 +14,13 @@ typedef NS_ENUM(NSInteger,PCMCodecType){
 };
 @interface LAIAudioCoding : NSObject
 
+
 /**
 编码acc数据
 
- @param samplebufferRef pcm音频数据
  @param type pcm编码格式
-
- @return  获取一个编码acc数据
-
+·@return 对象
  */
-+(id)getCodingAudioBoxWithPCM:(CMSampleBufferRef)samplebufferRef OfCodeType:(PCMCodecType)type;
-
++ (instancetype)getCodingOfCodeType:(PCMCodecType)type;
+- (instancetype)setupAudioBoxWithPCM:(CMSampleBufferRef)samplebufferRef;
 @end

@@ -7,14 +7,17 @@
 //
 
 #import "LAIAudioCoding.h"
+
 @interface LAIAudioCoding()
 {
-    AudioConverterRef _audioConverter;//音频转换器
+    unsigned int _code;
+    AudioConverterRef _audioConverter;
 }
 @end
 
 @implementation LAIAudioCoding
-+(id)getCodingAudioBoxWithPCM:(CMSampleBufferRef)samplebufferRef OfCodeType:(PCMCodecType)type{
+@dynamic description;
++(instancetype)getCodingOfCodeType:(PCMCodecType)type{
     unsigned int code;//编码类型
 
     switch (type) {
@@ -28,6 +31,18 @@
         default:
             break;
     }
+    
+    LAIAudioCoding *audioCode = [[LAIAudioCoding alloc]initWithCode:code];
+    return audioCode;
+    
+}
+- (instancetype)initWithCode:(unsigned int)code{
+    if (self = [super init]) {
+        _code = code;
+    }
+    return self;
+}
+- (instancetype)setupAudioBoxWithPCM:(CMSampleBufferRef)samplebufferRef{
     AudioStreamBasicDescription intputAudioStream  = *CMAudioFormatDescriptionGetStreamBasicDescription((CMAudioFormatDescriptionRef)CMSampleBufferGetFormatDescription(samplebufferRef));
     AudioStreamBasicDescription outputAudioStream = {0};
     // 初始化输出流的结构体描述为0. 很重要。
@@ -40,15 +55,32 @@
     outputAudioStream.mChannelsPerFrame = 1; // 声道数
     outputAudioStream.mBitsPerChannel = 0; // 压缩格式设置为0
     outputAudioStream.mReserved = 0; // 8字节对齐，填0.
-    AudioClassDescription *description = [self
-                                          getAudioClassDescriptionWithType:kAudioFormatMPEG4AAC
-                                          fromManufacturer:code]; //软编
-    
+    AudioClassDescription *description = [self getAudioClassDescriptionWithCodeType:kAudioFormatMPEG4AAC];
     OSStatus status = AudioConverterNewSpecific(&intputAudioStream, &outputAudioStream, 1, description, &_audioConverter); // 创建转换器
     if (status != 0) {
         NSLog(@"setup converter: %d", (int)status);
     }
-   
+
+    return self;
+}
+- (AudioClassDescription *)getAudioClassDescriptionWithCodeType:(UInt32)type{
+    static AudioClassDescription desc;
+    UInt32 encoderSpecifier = type;
+    OSStatus ost;
+    UInt32 size;
+    ost = AudioFormatGetPropertyInfo(kAudioFormatProperty_Encoders, sizeof(encoderSpecifier), &encoderSpecifier, &size); //获取一个缓冲大小
+    NSLog(@"%d",ost);
+    unsigned int count = size/ sizeof(AudioClassDescription);
+    AudioClassDescription descriptions[count];
+    
+    ost = AudioFormatGetProperty(kAudioFormatProperty_Encoders, sizeof(encoderSpecifier), &encoderSpecifier, &size, descriptions);//往缓冲区写入数据
+    NSLog(@"%d",ost);
+    for (int i = 0; i<count; i++) {
+        if ((type == descriptions[i].mSubType)&&(_code == descriptions[i].mManufacturer)) {
+            memcpy(&desc, &(descriptions[i]), sizeof(desc));
+            return &desc;
+        }
+    }
     return nil;
 }
 @end
